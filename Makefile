@@ -51,7 +51,6 @@ all: default
 
 DEFINES   += OS_IO_SEPROXYHAL
 DEFINES   += HAVE_BAGL HAVE_SPRINTF
-DEFINES   += HAVE_IO_USB HAVE_L4_USBLIB IO_USB_MAX_ENDPOINTS=4 IO_HID_EP_LENGTH=64 HAVE_USB_APDU
 DEFINES   += LEDGER_MAJOR_VERSION=$(APPVERSION_M) LEDGER_MINOR_VERSION=$(APPVERSION_N) LEDGER_PATCH_VERSION=$(APPVERSION_P)
 DEFINES   += IO_HID_EP_LENGTH=64
 
@@ -80,10 +79,10 @@ endif
 # Enabling debug PRINTF
 DEBUG:= 0
 ifneq ($(DEBUG),0)
-        DEFINES += HAVE_PRINTF HAVE_SEMIHOSTED_PRINTF PRINTF=semihosted_printf
-        CFLAGS  += -include src/dbg/debug.h
+        DEFINES += PRINTF=semihosted_printf
+        CFLAGS    += -include src/dbg/debug.h
 else
-        DEFINES += PRINTF\(...\)=
+        DEFINES   += PRINTF\(...\)=
 endif
 
 ##############
@@ -105,7 +104,7 @@ endif
 
 CC       := $(CLANGPATH)clang
 
-CFLAGS   += -Oz -Wno-format-invalid-specifier -Wno-format-extra-args
+CFLAGS   += -O3 -Os
 
 AS     := $(GCCPATH)arm-none-eabi-gcc
 
@@ -118,7 +117,6 @@ include $(BOLOS_SDK)/Makefile.glyphs
 
 ### variables processed by the common makefile.rules of the SDK to grab source files and include dirs
 APP_SOURCE_PATH  += src ethereum-plugin-sdk
-SDK_SOURCE_PATH  += lib_stusb lib_stusb_impl
 SDK_SOURCE_PATH  += lib_ux
 ifneq (,$(findstring HAVE_BLE,$(DEFINES)))
 SDK_SOURCE_PATH  += lib_blewbxx lib_blewbxx_impl
