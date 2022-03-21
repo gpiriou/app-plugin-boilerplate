@@ -20,6 +20,19 @@ typedef enum {
     BOILERPLATE_DUMMY_2,
 } selector_t;
 
+// screen array correspondance
+#define SET_SEND_UI        1  // Must remain first screen in screen array and always up.
+#define SET_RECEIVE_UI     (1 << 1)
+#define SET_BENEFICIARY_UI (1 << 2)
+#define UNUSED             (1 << 3)  // EDIT these to add more screens.
+#define UNUSED             (1 << 4)
+#define UNUSED             (1 << 5)
+#define UNUSED             (1 << 6)
+#define LAST_UI            (1 << 7)  // Must remain last screen in screen array.
+
+#define RIGHT_SCROLL 1
+#define LEFT_SCROLL  0
+
 // Enumeration used to parse the smart contract data.
 // EDIT THIS: Adapt the parameter names here.
 typedef enum {
@@ -51,6 +64,10 @@ typedef struct context_t {
     uint16_t offset;     // Offset at which the array or struct starts.
     bool go_to_offset;   // If set, will force the parsing to iterate through parameters until
                          // `offset` is reached.
+    // screen utils
+    uint8_t screen_array;
+    uint8_t previous_screen_index;
+    uint8_t plugin_screen_index;
 
     // For both parsing and display.
     selector_t selectorIndex;

@@ -3,7 +3,7 @@
 # FILL THESE WITH YOUR OWN SDKs PATHS and APP-ETHEREUM's ROOT
 NANOS_SDK=$NANOS_SDK
 NANOX_SDK=$NANOX_SDK
-APP_ETHEREUM='../app-ethereum'
+APP_ETHEREUM=$APP_ETHEREUM
 
 # create elfs folder if it doesn't exist
 mkdir -p elfs

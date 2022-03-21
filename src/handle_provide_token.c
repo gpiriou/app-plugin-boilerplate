@@ -21,8 +21,7 @@ void handle_provide_token(void *parameters) {
         context->token_found = false;
 
         // If we wanted to add a screen, say a warning screen for example, we could instruct the
-        // ethereum app to add an additional screen by setting `msg->additionalScreens` here, just
-        // like so:
+        // ethereum app to add an additional screen by raising a bitwise boolean.
         // msg->additionalScreens = 1;
     }
     msg->result = ETH_PLUGIN_RESULT_OK;
