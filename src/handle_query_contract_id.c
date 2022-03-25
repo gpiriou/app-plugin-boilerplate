@@ -1,4 +1,4 @@
-#include "nested_plugin.h"
+#include "boilerplate_plugin.h"
 #include "text.h"
 
 // Sets the first screen to display.

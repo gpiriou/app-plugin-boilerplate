@@ -6,15 +6,14 @@
 
 // Number of decimals used when the token wasn't found in the Crypto Asset List.
 #define DEFAULT_DECIMAL WEI_TO_ETHER
-#define ETH_DECIMAL WEI_TO_ETHE
+#define ETH_DECIMAL     WEI_TO_ETHE
 
 // Number of selectors defined in this plugin. Should match the enum `selector_t`.
 #define NUM_SELECTORS 6
 
 // Enumeration of the different selectors possible.
 // Should follow the exact same order as the array declared in main.c
-typedef enum
-{
+typedef enum {
     CREATE,
     PROCESS_INPUT_ORDERS,
     PROCESS_OUTPUT_ORDERS,
@@ -24,14 +23,13 @@ typedef enum
 
 } selector_t;
 
-extern const uint32_t NESTED_SELECTORS[NUM_SELECTORS];
+extern const uint32_t BOILERPLATE_SELECTORS[NUM_SELECTORS];
 
 /*
-    INestedFactory Structs
+    IBoilerplateFactory Structs
 */
 
-typedef enum
-{
+typedef enum {
     ORDER__OPERATOR,
     ORDER__TOKEN_ADDRESS,
     ORDER__OFFSET_CALLDATA,
@@ -39,8 +37,7 @@ typedef enum
     ORDER__CALLDATA,
 } order;
 
-typedef enum
-{
+typedef enum {
     BIO__INPUTTOKEN,
     BIO__AMOUNT,
     BIO__OFFSET_ORDERS,
@@ -49,8 +46,7 @@ typedef enum
     BIO__OFFSET_ARRAY_ORDERS
 } batch_input_orders;
 
-typedef enum
-{
+typedef enum {
     BOO__INPUTTOKEN,
     BOO__OFFSET_AMOUNTS,
     BOO__OFFSET_ORDERS,
@@ -63,43 +59,38 @@ typedef enum
 
 /* Parsing */
 
-typedef enum
-{
+typedef enum {
     S_NONE,
     S_BATCHED_INPUT_ORDERS,
     S_BATCHED_OUTPUT_ORDERS,
     S_ORDER,
 } on_struct;
 
-/* INestedFactory Functions */
+/* IBoilerplateFactory Functions */
 
-typedef enum
-{
+typedef enum {
     CREATE__A_NOOP,
     CREATE__TOKEN_ID,
     CREATE__OFFSET_BATCHINPUTORDER,
     CREATE__LEN_BATCHINPUTORDER,
     CREATE__OFFSET_ARRAY_BATCHINPUTORDER,
-    CREATE__BATCH_INPUT_ORDERS, // will not be reached
+    CREATE__BATCH_INPUT_ORDERS,  // will not be reached
 } create_parameter;
 
-typedef enum
-{
+typedef enum {
     PROCESS_INPUT_ORDERS_NOOP,
     PROCESS_INPUT_NFTID,
     PROCESS_INPUT_BATCHED_ORDERS,
 } process_input_orders_parameter;
 
-typedef enum
-{
+typedef enum {
     PROCESS_OUTPUT_NFTID,
     PROCESS_OUTPUT_BATCHED_ORDERS,
 } process_output_orders_parameter;
 
 /* FeeSplitter Functions */
 
-typedef enum
-{
+typedef enum {
     RELEASE_NOOP,
     RELEASE_OFFSET_TOKENS,
     RELEASE_LEN_TOKENS,
@@ -107,48 +98,47 @@ typedef enum
 } release_tokens_paramter;
 
 // Booleans
-#define IS_COPY (1)
+#define IS_COPY             (1)
 #define PAYMENT_TOKEN_FOUND (1 << 2)
-#define BOOL3 (1 << 3)
-#define BOOL4 (1 << 4)
-#define BOOL5 (1 << 5)
-#define BOOL6 (1 << 6)
-#define BOOL7 (1 << 7)
-#define BOOL8 (1 << 8)
+#define BOOL3               (1 << 3)
+#define BOOL4               (1 << 4)
+#define BOOL5               (1 << 5)
+#define BOOL6               (1 << 6)
+#define BOOL7               (1 << 7)
+#define BOOL8               (1 << 8)
 
 // screen array correspondance
-#define TX_TYPE_UI 1 // Must remain first screen in screen array and always up.
-#define PLACEHOLDER_UI (1 << 1)
+#define TX_TYPE_UI               1  // Must remain first screen in screen array and always up.
+#define PLACEHOLDER_UI           (1 << 1)
 #define UNKNOWN_PAYMENT_TOKEN_UI (1 << 2)
-#define SCREEN_UI_4 (1 << 3)
-#define SCREEN_UI_5 (1 << 4)
-#define SCREEN_UI_6 (1 << 5)
-#define SCREEN_UI_7 (1 << 6)
-#define LAST_UI (1 << 7) // Must remain last screen in screen array.
+#define SCREEN_UI_4              (1 << 3)
+#define SCREEN_UI_5              (1 << 4)
+#define SCREEN_UI_6              (1 << 5)
+#define SCREEN_UI_7              (1 << 6)
+#define LAST_UI                  (1 << 7)  // Must remain last screen in screen array.
 
 #define RIGHT_SCROLL 1
-#define LEFT_SCROLL 0
+#define LEFT_SCROLL  0
 
 // Shared global memory with Ethereum app. Must be at most 5 * 32 bytes.
-typedef struct __attribute__((__packed__)) context_t
-{
+typedef struct __attribute__((__packed__)) context_t {
     uint8_t on_struct;
 
     // For display.
     uint8_t beneficiary[ADDRESS_LENGTH];
 
     // Payment token info
-    uint8_t payment_token_address[ADDRESS_LENGTH]; // keep
-    uint8_t payment_token_amount[INT256_LENGTH];   // 32
+    uint8_t payment_token_address[ADDRESS_LENGTH];  // keep
+    uint8_t payment_token_amount[INT256_LENGTH];    // 32
     uint8_t payment_token_decimals;
-    char ticker[MAX_TICKER_LEN]; // keep
-    uint8_t token_found;         // keep
+    char ticker[MAX_TICKER_LEN];  // keep
+    uint8_t token_found;          // keep
 
     // For parsing data.
-    uint8_t next_param; // Set to be the next param we expect to parse.
-    uint32_t offset;    // Offset at which the array or struct starts.
-    bool go_to_offset;  // If set, will force the parsing to iterate through parameters until
-                        // `offset` is reached.
+    uint8_t next_param;  // Set to be the next param we expect to parse.
+    uint32_t offset;     // Offset at which the array or struct starts.
+    bool go_to_offset;   // If set, will force the parsing to iterate through parameters until
+                         // `offset` is reached.
 
     // screen utils
     uint8_t screen_array;

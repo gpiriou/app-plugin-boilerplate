@@ -1,4 +1,4 @@
-#include "nested_plugin.h"
+#include "boilerplate_plugin.h"
 #include "text.h"
 
 static void set_tx_type_ui(ethQueryContractUI_t *msg, context_t *context)

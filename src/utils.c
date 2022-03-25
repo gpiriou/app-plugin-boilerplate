@@ -1,4 +1,4 @@
-#include "nested_plugin.h"
+#include "boilerplate_plugin.h"
 
 static const char G_HEX[] = {
     '0',

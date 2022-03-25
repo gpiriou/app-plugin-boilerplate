@@ -1,4 +1,4 @@
-#include "nested_plugin.h"
+#include "boilerplate_plugin.h"
 
 static uint8_t count_screens(uint8_t screen_array)
 {

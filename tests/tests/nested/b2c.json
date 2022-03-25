@@ -3,7 +3,7 @@
     "contracts": [
         {
             "address": "0x9a065e500cdcd01c0a506b0eb1a8b060b0ce1379",
-            "contractName": "NestedFactory",
+            "contractName": "BoilerplateFactory",
             "selectors": {
                 "0xa378534b": {
                     "erc20OfInterest": [
@@ -11,7 +11,7 @@
                         "_batchedOrders.0.orders.0.token"
                     ],
                     "method": "create",
-                    "plugin": "Nested"
+                    "plugin": "Boilerplate"
                 },
                 "0x90e1aa69": {
                     "erc20OfInterest": [
@@ -19,17 +19,17 @@
                         "_batchedOrders.0.orders.0.token"
                     ],
                     "method": "processInputOrders",
-                    "plugin": "Nested"
+                    "plugin": "Boilerplate"
                 },
                 "0x51227094": {
                     "erc20OfInterest": [],
                     "method": "processOutputOrders",
-                    "plugin": "Nested"
+                    "plugin": "Boilerplate"
                 },
                 "0xbba9b10c": {
                     "erc20OfInterest": [],
                     "method": "destroy",
-                    "plugin": "Nested"
+                    "plugin": "Boilerplate"
                 }
             }
         },
@@ -40,22 +40,22 @@
                 "0x6d9634b7": {
                     "erc20OfInterest" : ["_tokens.0"],
                     "method": "releaseTokens",
-                    "plugin": "Nested"
+                    "plugin": "Boilerplate"
                 }
             }
         },
         {
             "address": "0x0fff7f99d2b32849848e31cb48090c5268e06f65",
-            "contractName": "NestedNFT",
+            "contractName": "BoilerplateNFT",
             "selectors": {
                 "0x23b872dd": {
                     "erc20OfInterest": [],
                     "method": "transferFrom",
-                    "plugin": "Nested"
+                    "plugin": "Boilerplate"
 
             }
         }
     }
     ],
-    "name": "Nested"
+    "name": "Boilerplate"
 }

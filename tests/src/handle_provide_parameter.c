@@ -1,4 +1,4 @@
-#include "nested_plugin.h"
+#include "boilerplate_plugin.h"
 
 void copy_offset(ethPluginProvideParameter_t *msg, context_t *context)
 {
